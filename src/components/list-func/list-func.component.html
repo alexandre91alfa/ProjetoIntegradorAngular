@@ -1,0 +1,30 @@
+<form class="form-inline">
+  <div class="form-group mb-2">
+    <input
+      type="text"
+      class="form-control mr-2"
+      placeholder="Pesquisa de funcionário"
+    />
+    <button class="btn btn-outline-success">buscar</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>NAME</th>
+      <th>FUNÇÃO</th>
+      <th>RG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let staff of staffs">
+      <td>#</td>
+      <td>{{ staff.id }}</td>
+      <td>{{ staff.name }}</td>
+      <td>{{ staff.function }}</td>
+      <td>{{ staff.rg }}</td>
+    </tr>
+  </tbody>
+</table>
