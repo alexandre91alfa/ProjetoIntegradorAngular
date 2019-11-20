@@ -1,13 +1,15 @@
-<form class="form-inline">
+<div class="form-inline m-6 p-4">
   <div class="form-group mb-2">
     <input
-      type="text"
       class="form-control mr-2"
+      type="text"
       placeholder="Pesquisa de funcionário"
+      [(ngModel)]="filtro"
     />
     <button class="btn btn-outline-success">buscar</button>
   </div>
-</form>
+</div>
+<h3 class="text-left">Filtro: {{ filtro }}</h3>
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
@@ -19,11 +21,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let staff of staffs">
-      <td>#</td>
+    <tr *ngFor="let staff of filtraStaff">
+      <td>
+        <img
+          [src]="staff.imgUrl"
+          [style.heigth.px]="imgAltura"
+          [style.width.px]="imgLargura"
+          alt="{{ staff.name }}"
+        />
+      </td>
       <td>{{ staff.id }}</td>
-      <td>{{ staff.name }}</td>
-      <td>{{ staff.function }}</td>
+      <td>{{ staff.name | uppercase }}</td>
+      <td>{{ staff.function | uppercase }}</td>
       <td>{{ staff.rg }}</td>
     </tr>
   </tbody>
