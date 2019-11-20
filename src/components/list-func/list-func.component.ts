@@ -21,6 +21,12 @@ export class ListFuncComponent implements OnInit {
         console.log(respose);
       },
       error => {
+        this.staffs.push({
+          id: 1,
+          name: "Alexandre Jose",
+          function: "Ceo",
+          rg: 24564
+        });
         console.log(error);
       }
     );
