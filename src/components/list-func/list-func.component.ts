@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { StaffService } from "../../services/Staff.service";
 import { Staff } from "src/model/Staff";
+import { BsModalRef, BsModalService } from "ngx-bootstrap";
 
 @Component({
   selector: "app-list-func",
@@ -8,11 +9,23 @@ import { Staff } from "src/model/Staff";
   styleUrls: ["./list-func.component.css"]
 })
 export class ListFuncComponent implements OnInit {
+  public filtraStaff: Staff[];
+  public staffs: any;
+  public imgAltura = 50;
+  public imgLargura = 100;
   // tslint:disable-next-line: variable-name
   _filtro: string;
+  modalRef: BsModalRef;
+
+  constructor(
+    private http: StaffService,
+    private modalService: BsModalService
+  ) {}
+
   get filtro(): string {
     return this._filtro;
   }
+
   set filtro(value: string) {
     this._filtro = value;
     this.filtraStaff = this.filtro
@@ -20,11 +33,9 @@ export class ListFuncComponent implements OnInit {
       : this.staffs;
   }
 
-  public filtraStaff: Staff[];
-  public staffs: any;
-  public imgAltura = 50;
-  public imgLargura = 100;
-  constructor(private http: StaffService) {}
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   ngOnInit() {
     this.getFuncionarios();

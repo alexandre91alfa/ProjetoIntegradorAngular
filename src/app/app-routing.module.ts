@@ -4,8 +4,8 @@ import { FuncionarioComponent } from "src/view/funcionario/funcionario.component
 import { CadastroComponent } from "src/view/cadastro/cadastro.component";
 
 const routes: Routes = [
-  { path: "cad", component: CadastroComponent },
-  { path: "", component: FuncionarioComponent }
+  { path: "", component: CadastroComponent },
+  { path: "Analitico", component: FuncionarioComponent }
 ];
 
 @NgModule({

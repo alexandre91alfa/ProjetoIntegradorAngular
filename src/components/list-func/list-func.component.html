@@ -6,7 +6,6 @@
       placeholder="Pesquisa de funcionário"
       [(ngModel)]="filtro"
     />
-    <button class="btn btn-outline-success">buscar</button>
   </div>
 </div>
 <h3 class="text-left">Filtro: {{ filtro }}</h3>
@@ -18,6 +17,7 @@
       <th>NAME</th>
       <th>FUNÇÃO</th>
       <th>RG</th>
+      <th>INFORMAÇÃO</th>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +34,95 @@
       <td>{{ staff.name | uppercase }}</td>
       <td>{{ staff.function | uppercase }}</td>
       <td>{{ staff.rg }}</td>
+      <td>
+        <button
+          class="btn btn-success"
+          (click)="openModal(info)"
+          tooltip="INFORMAÇÃO"
+        >
+          <i class="fa fa-info-circle"></i>
+        </button>
+        <button
+          class="btn btn-danger text-right"
+          (click)="remove()"
+          tooltip="EXCLUIR"
+        >
+          <i class="fa fa-eraser"></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
+<div>
+  <button
+    class="btn btn-primary text-right"
+    (click)="openModal(cadastro)"
+    tooltip="CADASTRO"
+  >
+    <i class="fa fa-plus-square"> CADASTRO</i>
+  </button>
+</div>
+
+<ng-template #cadastro>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">CADASTRO</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="text-center">
+    <form class="m-5">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>NOME </label>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label>FUNÇÃO</label>
+          <input type="text" class="form-control" />
+        </div>
+        <div class="form-group col-md-4">
+          <label>RG</label>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>URL IMAGEM</label>
+          <input type="text" class="form-control" />
+        </div>
+      </div>
+    </form>
+    <button class="btn btn-primary" (click)="salvarAlteracao()">
+      SALVAR
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    Qualita
+  </div>
+</ng-template>
+
+<ng-template #info>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">INFORMAÇÃO</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="text-center"></div>
+  <div class="modal-body text-center">
+    Qualita
+  </div>
+</ng-template>
