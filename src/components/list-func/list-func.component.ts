@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { StaffService } from "../../services/Staff.service";
+import { Staff } from "src/model/Staff";
 
 @Component({
   selector: "app-list-func",
@@ -19,17 +20,17 @@ export class ListFuncComponent implements OnInit {
       : this.staffs;
   }
 
-  public filtraStaff: any[] = [];
-  public staffs: any = [];
+  public filtraStaff: Staff[];
+  public staffs: any;
   public imgAltura = 50;
   public imgLargura = 100;
-  constructor(private http: HttpClient) {}
+  constructor(private http: StaffService) {}
 
   ngOnInit() {
     this.getFuncionarios();
   }
 
-  filtraStaffs(filtraPor: string): any {
+  filtraStaffs(filtraPor: string): Staff[] {
     filtraPor = filtraPor.toLocaleLowerCase();
     return this.staffs.filter(x => {
       return x.name.toLocaleLowerCase().indexOf(filtraPor) !== -1;
@@ -37,17 +38,17 @@ export class ListFuncComponent implements OnInit {
   }
 
   getFuncionarios() {
-    this.http.get("http://localhost:5000/v1/staff").subscribe(
-      respose => {
-        this.staffs = respose;
-        console.log(respose);
+    this.http.getStaffs().subscribe(
+      (Staffs: Staff[]) => {
+        this.staffs = Staffs;
+        console.log(Staffs);
       },
       error => {
         this.staffs.push({
           id: 1,
-          name: "Alexandre Jose",
+          name: "alexandre jose",
           function: "Ceo",
-          rg: 24564
+          rg: 91
         });
         console.log(error);
       }
